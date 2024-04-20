@@ -123,8 +123,8 @@
 </div>
 </body>
 <script>
-  document.getElementById("formData").addEventListener("submit", function(e) {
-    e.preventDefault(); 
+  document.getElementById("formData").addEventListener("submit", function(f) {
+    f.preventDefault(); // Prevent the default form submission
 
     // Gathering form data to be sent
     const formData = new FormData(this);

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="kYcmjzq-TI-hxjlWzRE1goDJJ8GUrBd03awieiYpjBw" />
+    <link rel="icon" href="asset/favicon.ico">
+    <meta name="description" content="自訂轉盤、機率、選項！">
+    <meta name="og:description" content="自訂轉盤、機率、選項！" />
+    <meta property="fb:app_id" content="1606433366287698" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:title" content="自訂轉盤" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://z358z358.github.io/Roulette/" />
+    <meta property="og:site_name" content="自訂轉盤" />
+    <meta property="og:description" content="自訂轉盤、機率、選項！" />
+    <meta property="og:image" content="http://z358z358.github.io/Roulette/asset/200x200.jpg" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+    <link href="dist/styles/main.css?2" rel="stylesheet">
+    <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script>
+    <link rel="alternate" hreflang="en" href="https://z358z358.github.io/Roulette/?lang=en" />
+    <link rel="alternate" hreflang="zh-tw" href="https://z358z358.github.io/Roulette/?lang=tw" />
+    <script>
+        window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+</script>
+
+<title>Roulette Spinner</title>
+
+</head>
+<body id="main">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MNGDS4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <nav class="navbar navbar-default  navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">切換導覽列</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav"> 
+            <!-- edit roullete -->
+            <li><a class="intro-step" href="#" data-toggle="modal" data-target="#set-modal" data-step="4" data-intro-key='intro.s4' data-i18n="nav.edit">修改轉盤</a></li>
+            <li><a class="intro-step" href="#" data-toggle="modal" data-target="#save-modal" data-step="5" data-intro-key='intro.s5' v-on="click:saveType = 'save'" data-i18n="nav.save">儲存轉盤</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#save-modal" v-show="user.uid && set.uid == user.uid" v-on="click:saveType = 'new'" data-i18n="nav.saveAs">另存轉盤</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li v-show="lang != 'en'"><a href="javascript:void(0)" v-on="click:changeLang('en', 'nav')">English</a>
+            </li>
+            <li v-show="lang != 'tw'"><a href="javascript:void(0)" v-on="click:changeLang('tw', 'nav')">中文</a>
+            </li>
+            <li class="share-li hidden-sm hidden-md hidden-xs">
+                <div id="share" class="jssocials">
+                    <div class="jssocials-shares">
+                        <div class="jssocials-share jssocials-share-twitter">
+                            <a href="javascript:void(0)" class="jssocials-share-link" v-on="click:copyLink">
+                                <i class="fa fa-link jssocials-share-logo" v-show="!copiedMsg"></i>
+                                <p v-show="copiedMsg" v-text="copiedMsg" style="display: none"></p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<div class="container">
+    <div class="alert alert-dismissible" role="alert" style="display: none" v-class="alert-danger:Msg.type=='error',alert-success:Msg.type=='success'" v-if="Msg.msg">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" v-on="click:Msg.msg=''"><span aria-hidden="true">&times;</span></button>
+        <strong v-text="Msg.type=='error' ? '錯誤!' : '成功!' "></strong> <span v-text="Msg.msg"></span>
+    </div>
+    <div class="ly-plate">
+        <div class="lottery-star first-intro i18n-title intro-step" data-toggle="tooltip" data-placement="bottom" title="intro.i1" data-step="3" data-intro-key='intro.s3' v-on="click:go"><i id="lotteryBtn" class="fa fa-long-arrow-up"></i></div>
+        <div class="piechart intro-step" id="piechart" data-step="2" data-intro-key='intro.s2' v-on="click:go"></div>
+        <div class="fb-like z-10" data-href="http://z358z358.github.io/Roulette/#{{rid}}" data-layout="box_count" data-width="50" data-action="like" data-show-faces="true" data-share="false" data-colorscheme="dark"></div>
+    </div>
+</div>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5518310153941700" data-ad-slot="5554403276" data-ad-format="auto"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<audio id="sound" class="hidden" controls>
+</audio>
+<audio id="sound2" class="hidden" controls>
+</audio>
+<audio id="end" class="hidden" controls>
+</audio>
+<script id="_waualf">var _wau = _wau || []; _wau.push(["classic", "kejoz02pvi", "alf"]);</script>
+<script async src="//waust.at/c.js"></script>
+
+<div class="modal fade" id="set-modal" tabindex="-1" role="dialog" aria-labelledby="set-modalLabal" aria-hidden="true" v-on="click:draw">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on="click:draw"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="set-modalLabel" data-i18n="modal.m1">設定轉盤內容</h4>
+            </div>
+
+            <!-- set the edit settings -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1" data-i18n="modal.m2">轉盤標題</label>
+                    <input class="form-control" v-model="set.title" />
+                </div>
+                <div class="text-right">
+                    <label>
+                        <span class="btn-primary btn" data-i18n="modal.m3">上傳內容csv</span>
+                        <input v-if="uploadReady" class="hidden" id="uploadCsv" type="file" accept=".csv" v-on="change:csvUpload">
+                    </label>
+                    <button class="btn-primary btn" type="button" v-on="click:csvDownload" data-i18n="modal.m4">下載內容csv</button>
+                </div>
+                <h4 class="modal-title" id="set-modalLabel" data-i18n="modal.m5">轉盤選項</h4>
+                <table id="option-table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th data-i18n="modal.m6">名稱</th>
+                            <th data-i18n="modal.m7">比重</th>
+                            <th class="hidden-xs" data-i18n="tabc.probability">機率</th>
+                            <th>
+                                <button type="button" class="btn btn-primary" v-on="click:addOption" data-i18n="modal.m8">新增</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody v-repeat="set.options" v-transition>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" v-model="name">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control " v-model="weight" v-on="keyup:getSum">
+                            </td>
+                            <td class="hidden-xs">
+                                <p v-text="sum ? (weight / sum) : '' | persent"></p>
+                            </td>
+                            <td>
+                                <div class="hidden-xs">
+                                    <button type="button" class="btn btn-default" v-on="click:copyOption(this, $index)"><i class="fa fa-copy" title="複製" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-danger" v-on="click:removeOption(this)"><i class="fa fa-trash" title="刪除" aria-hidden="true"></i></button>
+                                </div>
+                                <div class="visible-xs">
+                                    <button type="button" class="btn btn-default btn-xs" v-on="click:copyOption(this, $index)"><i class="fa fa-copy" title="複製" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-danger btn-xs" v-on="click:removeOption(this)"><i class="fa fa-trash" title="刪除" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" v-on="click:draw" data-i18n="modal.m10">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="list-modal" tabindex="-1" role="dialog" aria-labelledby="list-modalLabal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="list-modalLabel" v-text="listTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info" role="alert" v-show="list.length > 49" data-i18n="modal.m11">僅顯示前50筆</div>
+                <div class="list-group">
+                    <div class="list-wrap" v-repeat="list | orderBy listOrder true">
+                        <a href="#{{ id }}" class="list-group-item" data-dismiss="modal" v-on="click:loadOption(id)">
+                            <i v-show="isPrivate" class="fa fa-unlock-alt" aria-hidden="true"></i>
+                            <span class="item-title" v-text="title || '沒名字'"></span>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <small title="人氣" v-show="hot > 0">
+                                        <i class="fa fa-eye"></i>
+                                        <span v-text="hot"></span>
+                                    </small>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <small class="timeago" title="{{ts}}"></small>
+                                </div>
+                            </div>
+                        </a>
+                        <i v-if="listType == 'my'" v-on="click:deleteData(id)" class="fa fa-trash list-trash fa-2x" title="刪除" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 儲存 -->
+<div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="save-modalLabal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="save-modalLabel">
+                    <span v-show="saveType != 'new'" data-i18n="modal.m13">儲存轉盤</span>
+                    <span v-show="saveType == 'new'" data-i18n="modal.m14">另存轉盤</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label data-i18n="modal.m15">給他個標題吧！</label>
+                        <input class="form-control" placeholder="" v-model="set.title">
+                    </div>
+                    <div class="form-check" title="不會出現在公開列表裡">
+                        <input class="form-check-input" type="checkbox" v-model="set.isPrivate" value="1" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1" data-i18n="modal.m16">
+                            不公開的轉盤
+                        </label>
+                        <p>
+                            <span data-i18n="modal.m17">不會出現在公開列表裡</span>
+                            <span v-show="user.uid == ''" data-i18n="modal.m18">，可以先登入帳號，就會出現在[我的轉盤]中</span>
+                            <span v-show="user.uid" data-i18n="modal.m19">，會出現在[我的轉盤]中</span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal" data-i18n="modal.m20">取消</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" v-on="click:saveOnFireBase" data-i18n="modal.m21">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+        <div id="fb-root"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/8.1.0/i18next.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js" integrity="sha256-qXBd/EfAdjOA2FGrGAG+b3YBn2tn5A6bhz+LSgYD96k=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="dist/scripts/main.js?17"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(vue.draw);
+        </script>
+</body>
+</html>

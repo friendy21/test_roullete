@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+          }
+          
+        body {
+            background-image: url('website wallpaper 1.png');
+            background-position: center center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover; /* Scale the background to cover the entire container */
+            /* Ensure the background scales correctly with different screen sizes */
+            -webkit-background-size: cover; /* For WebKit browsers */
+            -moz-background-size: cover; /* For Mozilla browsers */
+            -o-background-size: cover; /* For Opera browsers */
+          }
+
+        input[type=text], input[type=email], input[type=submit] {
+            font-size: 2vh;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+          }
+          
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+          }
+        input[type=submit]:hover {
+            background-color: #45a049;
+          }
+          
+        label {
+            display: block;
+          }
+
+        #DataForm {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(55, 55, 55, 0.9);
+            border-radius: 5px;
+            width: 250px;
+            max-width: 90%;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d0d0d0;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        #DataForm:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+            transform: translateY(-50%) scale(1.02); 
+        }
+        
+        #DataForm label, input[type="text"], input[type="submit"], input[type="radio"] + label {
+            display: block; 
+            margin-bottom: 5px; 
+        }
+        
+        #DataForm input[type="text"], #DataForm input[type="submit"] {
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+        
+        #DataForm input[type="radio"] {
+            margin-top: 0;
+            display: inline-flex; 
+        }
+        
+        #DataForm label {
+            margin-bottom: 2px; 
+        }
+    </style>
+</head>
+<body>
+  <div id="DataForm">
+    <form id="submitForm" action="https://script.google.com/macros/s/AKfycbyxrrDwQiFbvbphJOHbTgtJIGqXP78HJePdk56FNwNzP8gjiI0oqn9PERRRVZ2ppLT9zQ/exec" method="post">
+
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" placeholder="John" autocomplete="given-name">
+        
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" placeholder="Doe" autocomplete="family-name">
+        
+        <label for="location">Address:</label>
+        <input id="address" name="address" placeholder="Enter a location" type="text" autocomplete="address-level4">
+        
+        <label for="email">Email:</label>
+        <input id="email" name="email" placeholder="123@gmail.com" type="email">
+        
+        <label for="tnumber">Number Telphone:</label>
+        <input type="text" id="tnumber" name="tnumber" placeholder="123456">
+        
+        <label for="snumber">Serial Number:</label>
+        <input type="text" id="snumber" name="snumber" placeholder="ABC123">
+        
+        <label>Gender :</label>
+        <label>
+            <input type="radio" id="male" name="gender" value="male"> Male
+          </label>
+          
+          <label>
+            <input type="radio" id="female" name="gender" value="female"> Female
+          </label>
+        
+        <input type="submit" id="submitForm">
+          
+    </form>
+</div>
+</body>
+<script>
+  // JavaScript to redirect after form submission
+  document.getElementById("submitForm").onsubmit = function() {
+      // Redirect to roullete_admin.html
+      window.location.href = "roullete_admin.html";
+      // Prevent form submission (optional, if you want to prevent the form from submitting normally)
+      return false;
+  };
+</script>
+</html>

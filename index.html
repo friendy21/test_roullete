@@ -123,12 +123,26 @@
 </div>
 </body>
 <script>
-  // JavaScript to redirect after form submission
-  document.getElementById("submitForm").onsubmit = function() {
-      // Redirect to roullete_admin.html
-      window.location.href = "roullete_admin.html";
-      // Prevent form submission (optional, if you want to prevent the form from submitting normally)
-      return false;
-  };
+  document.getElementById("formData").addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Gathering form data to be sent
+    const formData = new FormData(this);
+
+    // Using fetch to send form data
+    fetch(this.action, {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => {
+      if(response.ok) {
+        // Redirect only after form submission is successful
+        window.location.href = "roullete_admin.html";
+      } else {
+        alert('There was a problem with the form submission.');
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  });
 </script>
 </html>

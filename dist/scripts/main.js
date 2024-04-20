@@ -10746,10 +10746,10 @@ var webLangCustom = {
                     m23: "Give suggestion"
                 },
                 js: {
-                    j1: "Anything you say.",
-                    j2: "Any will do.",
-                    j3: "I am okay with anything.",
-                    j4: "It’s up to you.",
+                    j1: "RM 400",
+                    j2: "RM 300",
+                    j3: "RM 200",
+                    j4: "RM 100",
                     j5: "What do you want to eat today?",
                     j6: "title",
                     j7: "weight",

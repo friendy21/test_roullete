@@ -45,42 +45,36 @@
       label {
           display: block;
       }
-      
-      #DataForm {
-          position: absolute;
-          right: 5%;
-          top: 50%;
-          transform: translateY(-50%);
-          background-color: rgba(55, 55, 55, 0.9);
-          border-radius: 5px;
-          width: 100%; 
-          max-width: 250px; 
-          padding: 15px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          border: 1px solid #d0d0d0;
-          transition: all 0.2s ease-in-out;
-      }
-      
-      @media (max-width: 600px) {
+      /* Mobile styles */
+      @media only screen and (max-width: 1080px) {
           #DataForm {
-              right: 0;
+              position: fixed;
               left: 0;
-              width: 90%;
-              max-width: none;
-              margin: 0 auto; /* Center the form */
-          }
       }
-  
-      @media (min-width: 601px) {
+
+      /* Desktop styles */
+      @media only screen and (min-width: 1081px) {
           #DataForm {
-              width: auto;
+              position: absolute;
+              right: 5%;
+              top: 50%;
+              transform: translateY(-50%);
+              background-color: rgba(55, 55, 55, 0.9);
+              border-radius: 5px;
+              width: 250px;
+              max-width: 90%;
+              padding: 15px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              border: 1px solid #d0d0d0;
+              transition: all 0.2s ease-in-out;
+          }
+      
+          #DataForm:hover {
+              box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+              transform: translateY(-50%) scale(1.02); 
           }
       }
-  
-      #DataForm:hover {
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-          transform: translateY(-50%) scale(1.02); 
-      }
+
       
       #DataForm label, input[type="text"], input[type="submit"], input[type="radio"] + label {
           display: block; 

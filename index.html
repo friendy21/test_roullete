@@ -47,12 +47,12 @@
 
           #DataForm {
             position: absolute;
-            right: 5%; /* Default position */
+            right: 5%;
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(55, 55, 55, 0.9);
             border-radius: 5px;
-            width: 250px;
+            width: 250px; 
             max-width: 90%;
             padding: 15px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -60,13 +60,10 @@
             transition: all 0.2s ease-in-out;
         }
         
-        #formData {
-            width: 100%;
-        }
-        
-        @media screen and (max-width: 600px) {
+        @media (max-width: 720px) {
             #DataForm {
-                right: 0; 
+                right: 0;
+                left: 0;
                 width: 100%;
                 max-width: none;
             }

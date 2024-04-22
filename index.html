@@ -12,13 +12,12 @@
           
         body {
             background-image: url('website wallpaper 1.png');
-            background-position: center center; /* Center the background image */
-            background-repeat: no-repeat; /* Do not repeat the image */
-            background-size: cover; /* Scale the background to cover the entire container */
-            /* Ensure the background scales correctly with different screen sizes */
-            -webkit-background-size: cover; /* For WebKit browsers */
-            -moz-background-size: cover; /* For Mozilla browsers */
-            -o-background-size: cover; /* For Opera browsers */
+            background-position: center center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            -webkit-background-size: cover; 
+            -moz-background-size: cover;
+            -o-background-size: cover; 
           }
 
         input[type=text], input[type=email], input[type=submit] {
@@ -46,9 +45,9 @@
             display: block;
           }
 
-        #DataForm {
+          #DataForm {
             position: absolute;
-            right: 5%;
+            right: 5%; /* Default position */
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(55, 55, 55, 0.9);
@@ -59,6 +58,18 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border: 1px solid #d0d0d0;
             transition: all 0.2s ease-in-out;
+        }
+        
+        #formData {
+            width: 100%;
+        }
+        
+        @media screen and (max-width: 600px) {
+            #DataForm {
+                right: 0; 
+                width: 100%;
+                max-width: none;
+            }
         }
         
         #DataForm:hover {
@@ -123,26 +134,62 @@
 </div>
 </body>
 <script>
-  document.getElementById("formData").addEventListener("submit", function(f) {
-    f.preventDefault(); // Prevent the default form submission
+document.getElementById("formData").addEventListener("submit", function(f) {
+  f.preventDefault(); // Prevent the default form submission
+  
+  // Function to check if a string contains only letters
+  function isValidString(str) {
+      return /^[A-Za-z]+$/.test(str);
+  }
+  
+  // Function to validate email
+  function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+  
+  // Function to check if a string contains only numbers
+  function isValidNumber(str) {
+      return /^[0-9]+$/.test(str);
+  }
 
-    // Gathering form data to be sent
-    const formData = new FormData(this);
+  // Gathering form data to be sent
+  const formData = new FormData(this);
 
-    // Using fetch to send form data
-    fetch(this.action, {
+  // Validation
+  const firstName = formData.get('fname');
+  const lastName = formData.get('lname');
+  const email = formData.get('email');
+  const telNumber = formData.get('tnumber');
+
+  if (!isValidString(firstName) || !isValidString(lastName)) {
+      alert("Please enter a valid name (letters only) for first and last name.");
+      return;
+  }
+
+  if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+  }
+
+  if (!isValidNumber(telNumber)) {
+      alert("Please enter a valid telephone number (numbers only).");
+      return;
+  }
+
+  // Using fetch to send form data
+  fetch(this.action, {
       method: 'POST',
       body: formData,
-    })
-    .then(response => {
+  })
+  .then(response => {
       if(response.ok) {
-        // Redirect only after form submission is successful
-        window.location.href = "roullete_admin.html";
+          // Redirect only after form submission is successful
+          window.location.href = "roullete_admin.html";
       } else {
-        alert('There was a problem with the form submission.');
+          alert('There was a problem with the form submission.');
       }
-    })
-    .catch(error => console.error('Error:', error));
-  });
+  })
+  .catch(error => console.error('Error:', error));
+});
 </script>
 </html>

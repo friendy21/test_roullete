@@ -118,7 +118,7 @@
             border-top: 8px solid #3498db;
             width: 50px;
             height: 50px;
-            -webkit-animation: spin 1s linear infinite; /* Safari */
+            -webkit-animation: spin 1s linear infinite; 
             animation: spin 1s linear infinite;
           }
           
@@ -182,17 +182,17 @@
       document.getElementById("submitButton").disabled = true;
     
       function isValidString(str) {
-          return /^[A-Za-z]+$/.test(str);
+            return /^[A-Za-z\s]+$/.test(str);
       }
       
       function isValidEmail(email) {
-          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       }
       
       function isValidNumber(str) {
-          return /^[0-9]+$/.test(str);
+          return /^\d+$/.test(str);
       }
-    
+      
       const formData = new FormData(this);
     
       // Validation
@@ -200,6 +200,7 @@
       const lastName = formData.get('lname');
       const email = formData.get('email');
       const telNumber = formData.get('tnumber');
+      const serialNumber = formData.get('snumber');
     
       if (!isValidString(firstName) || !isValidString(lastName)) {
           alert("Please enter a valid name (letters only) for first and last name.");
@@ -219,8 +220,14 @@
           return;
       }
 
-    document.getElementById("loadingOverlay").style.display = "flex";
-        
+      if (/\S/.serialNumber.trim() === '') { 
+        alert("Please enter a serial number.");
+        document.getElementById("submitButton").disabled = false; // Re-enable submit button
+        return;
+    }
+      
+      document.getElementById("loadingOverlay").style.display = "flex";
+
       fetch(this.action, {
           method: 'POST',
           body: formData,
@@ -244,5 +251,4 @@
     });
 });
     </script>
-    
 </html>

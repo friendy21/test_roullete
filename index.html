@@ -200,29 +200,29 @@
       const lastName = formData.get('lname');
       const email = formData.get('email');
       const telNumber = formData.get('tnumber');
-      const serialNumber = formData.get('snumber');
+      const serialNumber = formData.get('snumber').trim();
     
       if (!isValidString(firstName) || !isValidString(lastName)) {
           alert("Please enter a valid name (letters only) for first and last name.");
-          document.getElementById("submitButton").disabled = false; // Re-enable submit button
+          document.getElementById("submitButton").disabled = false; 
           return;
       }
     
       if (!isValidEmail(email)) {
           alert("Please enter a valid email address.");
-          document.getElementById("submitButton").disabled = false; // Re-enable submit button
+          document.getElementById("submitButton").disabled = false; 
           return;
       }
     
       if (!isValidNumber(telNumber)) {
           alert("Please enter a valid telephone number (numbers only).");
-          document.getElementById("submitButton").disabled = false; // Re-enable submit button
+          document.getElementById("submitButton").disabled = false; 
           return;
       }
 
-      if (/\S/.serialNumber.trim() === '') { 
+      if (serialNumber === '') { 
         alert("Please enter a serial number.");
-        document.getElementById("submitButton").disabled = false; // Re-enable submit button
+        document.getElementById("submitButton").disabled = false; 
         return;
     }
       
@@ -251,4 +251,5 @@
     });
 });
     </script>
+    
 </html>

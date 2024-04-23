@@ -179,7 +179,6 @@
     document.getElementById("formData").addEventListener("submit", function(f) {
       f.preventDefault(); // Prevent the default form submission
 
-      document.getElementById("loadingOverlay").style.display = "flex";
       document.getElementById("submitButton").disabled = true;
     
       function isValidString(str) {
@@ -219,7 +218,9 @@
           document.getElementById("submitButton").disabled = false; // Re-enable submit button
           return;
       }
-    
+
+    document.getElementById("loadingOverlay").style.display = "flex";
+        
       fetch(this.action, {
           method: 'POST',
           body: formData,
